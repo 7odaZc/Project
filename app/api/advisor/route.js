@@ -19,7 +19,7 @@ export async function POST(request) {
         ? body.role.trim()
         : "";
 
-    // Validate user input
+    // Validate input
     if (description.length < 40) {
       return NextResponse.json(
         {
@@ -34,7 +34,7 @@ export async function POST(request) {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     const model = process.env.ANTHROPIC_MODEL;
 
-    // Make sure AI configuration exists
+    // Check configuration
     if (!apiKey || !model) {
       console.error("Missing Anthropic environment variables.");
 
@@ -47,28 +47,25 @@ export async function POST(request) {
       );
     }
 
-    // Build the prompt from trusted project data
+    // Build the prompt
     const prompt = buildAdvisorPrompt({
       role,
       description
     });
 
-    // Call Anthropic
+    // Call Anthropic Messages API
     const response = await fetch(
       "https://api.anthropic.com/v1/messages",
       {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
           "x-api-key": apiKey,
           "anthropic-version": "2023-06-01"
         },
-
         body: JSON.stringify({
-          model,
+          model: model,
           max_tokens: 700,
-          temperature: 0,
           messages: [
             {
               role: "user",
@@ -79,7 +76,7 @@ export async function POST(request) {
       }
     );
 
-    // Handle Anthropic errors
+    // Handle Anthropic API errors
     if (!response.ok) {
       const detail = await response.text();
 
@@ -90,7 +87,7 @@ export async function POST(request) {
       });
 
       let userMessage =
-        "The AI service is temporarily unavailable. Try again shortly.";
+        "The AI service is temporarily unavailable. Please try again shortly.";
 
       if (response.status === 400) {
         userMessage =
@@ -122,19 +119,15 @@ export async function POST(request) {
       );
     }
 
-    // Read Anthropic response
+    // Parse Anthropic response
     const payload = await response.json();
 
     const text = payload?.content?.find(
       (item) => item.type === "text"
     )?.text;
 
-    // No usable text
     if (!text) {
-      console.error(
-        "Anthropic returned no usable text:",
-        payload
-      );
+      console.error("Anthropic returned no usable text:", payload);
 
       return NextResponse.json(
         {
@@ -150,10 +143,10 @@ export async function POST(request) {
 
     try {
       parsed = JSON.parse(text);
-    } catch (parseError) {
-      console.error("Invalid JSON from Anthropic:", {
-        text,
-        parseError
+    } catch (error) {
+      console.error("Invalid JSON returned by Anthropic:", {
+        error,
+        text
       });
 
       return NextResponse.json(
@@ -165,7 +158,7 @@ export async function POST(request) {
       );
     }
 
-    // Validate the structure
+    // Validate expected structure
     if (!validateAdvisorResult(parsed)) {
       console.error(
         "Invalid advisor result structure:",
@@ -181,8 +174,9 @@ export async function POST(request) {
       );
     }
 
-    // Successful response
+    // Return successful result
     return NextResponse.json(parsed);
+
   } catch (error) {
     console.error("Advisor route error:", error);
 
