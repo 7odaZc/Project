@@ -53,7 +53,7 @@ export default function AdvisorForm() {
     <div className="grid gap-6 lg:grid-cols-[.85fr_1.15fr]">
       <form onSubmit={handleSubmit} className="rounded-3xl border border-white/10 bg-[#101B2E] p-6">
         <div>
-          <p className="text-xs font-bold tracking-[.14em] text-[#7785FF]">AI FEATURE</p>
+          <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">AI FEATURE</p>
           <h2 className="mt-2 text-2xl font-bold">Find the most relevant work.</h2>
           <p className="mt-3 leading-7 text-[#9EACC0]">
             Paste an opportunity description and the advisor will match it against real projects in this portfolio.
@@ -67,7 +67,7 @@ export default function AdvisorForm() {
             value={form.role}
             onChange={updateField}
             placeholder="e.g. Frontend Developer Intern"
-            className="rounded-xl border border-white/10 bg-[#0B1424] px-4 py-3 outline-none focus:border-[#7785FF]"
+            className="rounded-xl border border-white/10 bg-[#0B1424] px-4 py-3 outline-none focus:border-[#4F5FCF]"
           />
         </label>
 
@@ -79,7 +79,7 @@ export default function AdvisorForm() {
             onChange={updateField}
             rows={8}
             placeholder="Paste the job description or describe what the opportunity needs…"
-            className="rounded-xl border border-white/10 bg-[#0B1424] px-4 py-3 outline-none focus:border-[#7785FF]"
+            className="rounded-xl border border-white/10 bg-[#0B1424] px-4 py-3 outline-none focus:border-[#4F5FCF]"
             required
           />
         </label>
@@ -93,7 +93,7 @@ export default function AdvisorForm() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-5 w-full rounded-xl bg-[#7785FF] px-5 py-3 font-bold transition-opacity disabled:cursor-wait disabled:opacity-60"
+          className="mt-5 w-full rounded-xl bg-[#4F5FCF] px-5 py-3 font-bold transition-opacity disabled:cursor-wait disabled:opacity-60"
         >
           {loading ? "Analyzing…" : "Match the work"}
         </button>
@@ -103,7 +103,7 @@ export default function AdvisorForm() {
         aria-live="polite"
         className="rounded-3xl border border-white/10 bg-[#101B2E] p-6"
       >
-        <p className="text-xs font-bold tracking-[.14em] text-[#7785FF]">RESULT</p>
+        <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">RESULT</p>
 
         {!result && !loading && (
           <div className="mt-8 max-w-md">
@@ -118,7 +118,7 @@ export default function AdvisorForm() {
           <div className="mt-8">
             <p className="text-lg font-semibold">Comparing the opportunity with project evidence…</p>
             <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-1/2 animate-pulse rounded-full bg-[#7785FF]" />
+              <div className="h-full w-1/2 animate-pulse rounded-full bg-[#4F5FCF]" />
             </div>
           </div>
         )}

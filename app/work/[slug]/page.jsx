@@ -15,11 +15,11 @@ export default async function CaseStudyPage({ params }) {
   return (
     <main className="mx-auto w-[min(900px,calc(100%-32px))] py-20">
       <Link href="/work" className="text-sm text-[#9EACC0] hover:text-white">← Back to work</Link>
-      <p className="mt-10 text-xs font-bold tracking-[.14em] text-[#7785FF]">CASE STUDY</p>
+      <p className="mt-10 text-xs font-bold tracking-[.14em] text-[#4F5FCF]">CASE STUDY</p>
       <h1 className="mt-3 text-5xl font-bold tracking-tight">{project.title}</h1>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-[#9EACC0]">{project.summary}</p>
 
-      <div className="mt-10 flex aspect-video items-center justify-center rounded-3xl border border-white/10 bg-[#101B2E] text-xs tracking-[.12em] text-[#67758A]">
+      <div className="mt-10 flex aspect-video items-center justify-center rounded-3xl border border-white/10 bg-[#101B2E] text-xs tracking-[.12em] text-[#7F8DA1]">
         REAL PROJECT SCREENSHOT
       </div>
 
@@ -38,7 +38,7 @@ export default async function CaseStudyPage({ params }) {
         </section>
       </div>
 
-      <Link href="/contact" className="mt-10 inline-block rounded-xl bg-[#7785FF] px-5 py-3 font-bold">
+      <Link href="/contact" className="mt-10 inline-block rounded-xl bg-[#4F5FCF] px-5 py-3 font-bold">
         Contact me
       </Link>
     </main>

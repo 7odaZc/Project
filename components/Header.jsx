@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="mx-auto flex w-[min(1120px,calc(100%-32px))] items-center justify-between py-6">
       <Link href="/" className="font-bold tracking-tight">
-        Mahmoud<span className="text-[#7785FF]">.</span>
+        Mahmoud<span className="text-[#4F5FCF]">.</span>
       </Link>
 
       <nav aria-label="Main navigation" className="flex gap-5 text-sm text-[#9EACC0]">
