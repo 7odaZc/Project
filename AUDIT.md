@@ -1,31 +1,39 @@
-# Performance & Accessibility Audit Evidence
+# Performance & Accessibility Audit
 
-## Required before final submission
+URL: https://mahmoud-elzayat-capstone-ai-enhance.vercel.app
 
-Target URL: https://mahmoud-elzayat-capstone-ai-enhance.vercel.app
+## Lighthouse - Mobile
 
-Run Lighthouse against the live URL in Chrome and record:
-- Performance
-- Accessibility
-- Best Practices
-- SEO
+- Performance: 100
+- Accessibility: 100
+- Best Practices: 96
+- SEO: 100
 
-Target:
-- 85+ overall minimum for the capstone rubric
-- 90+ preferred
-- No WCAG 2.1 AA violations found by the selected audit tool
+## Lighthouse - Desktop
 
-Also run axe DevTools or WAVE and record the findings.
+- Performance: 100
+- Accessibility: 100
+- Best Practices: 96
+- SEO: 100
 
-## Evidence table
+## axe / WAVE
 
-| Check | Actual result | Improvement made |
-|---|---|---|
-| Lighthouse Performance | Pending browser audit | Record the largest issue and fix |
-| Lighthouse Accessibility | Pending browser audit | Record one concrete fix |
-| Lighthouse Best Practices | Pending browser audit | Record relevant finding |
-| Lighthouse SEO | Pending browser audit | Record relevant finding |
-| axe / WAVE | Pending browser audit | Record any accessibility violations |
+Tool: axe-core CLI 4.13.0
 
-## Important
-Do not invent scores. Replace the TODO values with the actual production results before submitting the capstone.
+Result: 0 violations found on the production homepage. The tool notes that automated testing does not detect every accessibility issue, so manual review remains useful.
+
+## Concrete audit-driven improvement
+
+### Finding
+
+The initial Lighthouse and axe contrast audit found insufficient contrast on the CTA background/text pair (2.96:1) and project screenshot placeholder text (3.86:1). The required ratio for the tested normal text was 4.5:1.
+
+### Fix
+
+Updated CTA backgrounds from `#7785FF` to `#4F5FCF`, updated screenshot placeholder text from `#67758A` to `#7F8DA1`, and changed accent labels from `#4F5FCF` to `#AAB2FF` in the existing page and component styles.
+
+### Result
+
+After redeploying, Lighthouse reported Accessibility 100 on both mobile and desktop, and axe reported 0 violations.
+
+The production page also had no horizontal overflow at a 375px viewport: document client width and scroll width were both 360px.

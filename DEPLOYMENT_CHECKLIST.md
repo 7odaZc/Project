@@ -3,16 +3,16 @@
 ## Production
 - [x] Next.js application builds locally.
 - [x] Production deployment exists on Vercel.
-- [ ] Confirm current production build is the exact commit being submitted.
+- [x] Confirm current production build is the exact commit being submitted (`455f256`).
 - [x] Configure `OPENROUTER_API_KEY` as a server-side Vercel environment variable for Preview and Production.
-- [ ] Configure `OPENROUTER_MODEL` as a server-side Vercel environment variable for Preview, Production, and Development.
+- [x] Configure `OPENROUTER_MODEL=openrouter/free` as a server-side Vercel environment variable for Preview, Production, and Development.
 - [x] Verify public production routes respond successfully.
 - [x] Verify no `.env.local` or API key is present in the submitted repository.
-- [ ] Verify `/api/advisor` works on production after configuring credentials.
-- [ ] Run Lighthouse on production.
-- [ ] Run axe/WAVE on production.
-- [ ] Test mobile at approximately 375px.
-- [ ] Test desktop at approximately 1280px.
+- [x] Verify `/api/advisor` works on production after configuring credentials.
+- [x] Run Lighthouse on production.
+- [x] Run axe/WAVE on production.
+- [x] Test mobile at approximately 375px.
+- [x] Test desktop at approximately 1280px.
 
 ## Safe failure
 If the AI service is unavailable, the API route returns a safe error and the UI displays a human-readable error state instead of exposing provider details.
