@@ -1,7 +1,7 @@
 export default function ContactPage() {
   return (
     <main className="mx-auto w-[min(820px,calc(100%-32px))] py-20">
-      <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">CONTACT</p>
+      <p className="text-xs font-bold tracking-[.14em] text-[#AAB2FF]">CONTACT</p>
       <h1 className="mt-3 text-5xl font-bold tracking-tight">Let’s talk.</h1>
       <p className="mt-4 leading-7 text-[#9EACC0]">
         Have a project, opportunity, or question? Send me a message.

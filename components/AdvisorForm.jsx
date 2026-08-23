@@ -53,7 +53,7 @@ export default function AdvisorForm() {
     <div className="grid gap-6 lg:grid-cols-[.85fr_1.15fr]">
       <form onSubmit={handleSubmit} className="rounded-3xl border border-white/10 bg-[#101B2E] p-6">
         <div>
-          <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">AI FEATURE</p>
+          <p className="text-xs font-bold tracking-[.14em] text-[#AAB2FF]">AI FEATURE</p>
           <h2 className="mt-2 text-2xl font-bold">Find the most relevant work.</h2>
           <p className="mt-3 leading-7 text-[#9EACC0]">
             Paste an opportunity description and the advisor will match it against real projects in this portfolio.
@@ -103,7 +103,7 @@ export default function AdvisorForm() {
         aria-live="polite"
         className="rounded-3xl border border-white/10 bg-[#101B2E] p-6"
       >
-        <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">RESULT</p>
+        <p className="text-xs font-bold tracking-[.14em] text-[#AAB2FF]">RESULT</p>
 
         {!result && !loading && (
           <div className="mt-8 max-w-md">

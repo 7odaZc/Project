@@ -15,7 +15,7 @@ export default async function CaseStudyPage({ params }) {
   return (
     <main className="mx-auto w-[min(900px,calc(100%-32px))] py-20">
       <Link href="/work" className="text-sm text-[#9EACC0] hover:text-white">← Back to work</Link>
-      <p className="mt-10 text-xs font-bold tracking-[.14em] text-[#4F5FCF]">CASE STUDY</p>
+      <p className="mt-10 text-xs font-bold tracking-[.14em] text-[#AAB2FF]">CASE STUDY</p>
       <h1 className="mt-3 text-5xl font-bold tracking-tight">{project.title}</h1>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-[#9EACC0]">{project.summary}</p>
 

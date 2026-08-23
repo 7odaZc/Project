@@ -2,6 +2,7 @@ node_modules/
 .next/
 coverage/
 *.log
+lighthouse-*.json
 
 .env*
 !.env.example

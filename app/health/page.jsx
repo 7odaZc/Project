@@ -24,7 +24,7 @@ export default async function HealthPage() {
 
   return (
     <main className="mx-auto w-[min(900px,calc(100%-32px))] py-20">
-      <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">HEALTH CHECK</p>
+      <p className="text-xs font-bold tracking-[.14em] text-[#AAB2FF]">HEALTH CHECK</p>
       <h1 className="mt-3 text-5xl font-bold tracking-tight">Fetched data is working.</h1>
 
       <div className="mt-8 rounded-3xl border border-white/10 bg-[#101B2E] p-7">

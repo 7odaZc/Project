@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
     <main className="mx-auto w-[min(1000px,calc(100%-32px))] py-20">
-      <p className="text-xs font-bold tracking-[.14em] text-[#4F5FCF]">ABOUT</p>
+      <p className="text-xs font-bold tracking-[.14em] text-[#AAB2FF]">ABOUT</p>
       <h1 className="mt-3 text-5xl font-bold tracking-tight">I learn by building.</h1>
 
       <div className="mt-10 grid gap-7 md:grid-cols-2">

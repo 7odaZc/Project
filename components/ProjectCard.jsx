@@ -10,7 +10,7 @@ export default function ProjectCard({ project }) {
         REAL PROJECT SCREENSHOT
       </div>
 
-      <p className="mt-5 text-xs font-bold tracking-[.14em] text-[#4F5FCF]">PROJECT</p>
+      <p className="mt-5 text-xs font-bold tracking-[.14em] text-[#AAB2FF]">PROJECT</p>
       <h2 className="mt-2 text-2xl font-bold">{project.title}</h2>
       <p className="mt-3 leading-7 text-[#9EACC0]">{project.summary}</p>
 
