@@ -4,8 +4,8 @@
 - [x] Next.js application builds locally.
 - [x] Production deployment exists on Vercel.
 - [ ] Confirm current production build is the exact commit being submitted.
-- [ ] Configure `ANTHROPIC_API_KEY` as a server-side Vercel environment variable.
-- [ ] Configure `ANTHROPIC_MODEL` as a server-side Vercel environment variable.
+- [x] Configure `OPENROUTER_API_KEY` as a server-side Vercel environment variable for Preview and Production.
+- [ ] Configure `OPENROUTER_MODEL` as a server-side Vercel environment variable for Preview, Production, and Development.
 - [x] Verify public production routes respond successfully.
 - [x] Verify no `.env.local` or API key is present in the submitted repository.
 - [ ] Verify `/api/advisor` works on production after configuring credentials.

@@ -8,7 +8,7 @@ This portfolio helps people evaluating my work identify which projects best supp
 
 https://mahmoud-elzayat-capstone-ai-enhance.vercel.app
 
-The deployed portfolio routes were smoke-tested successfully, including the home, work, about, contact, and React case-study pages. The AI request requires Anthropic environment variables configured in Vercel.
+The deployed portfolio routes were smoke-tested successfully, including the home, work, about, contact, and React case-study pages. The AI request requires `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` environment variables configured in Vercel.
 
 ## Repository and README
 

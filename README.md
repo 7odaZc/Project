@@ -22,11 +22,11 @@ http://localhost:3000
 Create `.env.local`:
 
 ```bash
-ANTHROPIC_API_KEY=your_server_side_key
-ANTHROPIC_MODEL=your_supported_claude_model
+OPENROUTER_API_KEY=your_server_side_key
+OPENROUTER_MODEL=openrouter/free
 ```
 
-The API key is only read on the server in `app/api/advisor/route.js`. It is never exposed to the browser.
+The OpenRouter API key is only read on the server in `app/api/advisor/route.js`. It is never exposed to the browser.
 
 ## Architecture
 - `app/page.jsx` — home/portfolio entry point and AI feature placement.
@@ -41,7 +41,7 @@ The API key is only read on the server in `app/api/advisor/route.js`. It is neve
 The default rendering strategy is Server Components. `AdvisorForm` is a Client Component because it needs form state, loading state, and browser interaction.
 
 ## AI integration
-The Portfolio Fit Advisor is not a generic chat box. The visitor provides a job/opportunity description. The server combines that request with a fixed list of my real project evidence, then sends a constrained prompt to Claude.
+The Portfolio Fit Advisor is not a generic chat box. The visitor provides a job/opportunity description. The server combines that request with a fixed list of my real project evidence, then sends a constrained prompt to an OpenRouter model.
 
 The prompt requires JSON with:
 - one short summary
@@ -89,10 +89,10 @@ The AI feature uses:
 Run Lighthouse and axe/WAVE against the deployed URL before final submission and record the actual results in `AUDIT.md`. The current audit file intentionally contains no invented scores.
 
 ## Known limitations
-- The AI result depends on an external Claude API and configured server-side credentials.
+- The AI result depends on the external OpenRouter API and configured server-side credentials.
 - The project evidence is manually maintained in `lib/projects.js`; a CMS/database would be needed for larger portfolios.
 - The current contact page is still a presentation layer; the capstone's AI feature is the Portfolio Fit Advisor.
-- The live deployment must have valid `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` environment variables configured to enable the AI feature.
+- The live deployment must have valid `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` environment variables configured to enable the AI feature. `OPENROUTER_MODEL` defaults to `openrouter/free`.
 
 ## Future improvements
 - Add rate limiting and abuse protection to the API route.
