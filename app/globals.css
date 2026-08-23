@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #09111f;
+  --surface: #101b2e;
+  --text: #f4f7fb;
+  --muted: #9eacc0;
+  --accent: #7785ff;
+  --success: #54d99b;
+  --error: #ff6e7f;
+  --line: rgba(255, 255, 255, 0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 75% 0%, rgba(119,133,255,.12), transparent 30%),
+    var(--bg);
+  color: var(--text);
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(119,133,255,.28);
+}
