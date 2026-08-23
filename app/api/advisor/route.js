@@ -6,7 +6,6 @@ import {
 
 export async function POST(request) {
   try {
-    // Read request body
     const body = await request.json();
 
     const description =
@@ -19,7 +18,6 @@ export async function POST(request) {
         ? body.role.trim()
         : "";
 
-    // Validate input
     if (description.length < 40) {
       return NextResponse.json(
         {
@@ -30,13 +28,11 @@ export async function POST(request) {
       );
     }
 
-    // Read server-side environment variables
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    const model = process.env.ANTHROPIC_MODEL;
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    const model = process.env.OPENROUTER_MODEL || "openrouter/free";
 
-    // Check configuration
-    if (!apiKey || !model) {
-      console.error("Missing Anthropic environment variables.");
+    if (!apiKey) {
+      console.error("Missing OPENROUTER_API_KEY");
 
       return NextResponse.json(
         {
@@ -47,25 +43,28 @@ export async function POST(request) {
       );
     }
 
-    // Build the prompt
     const prompt = buildAdvisorPrompt({
       role,
       description
     });
 
-    // Call Anthropic Messages API
     const response = await fetch(
-      "https://api.anthropic.com/v1/messages",
+      "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01"
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer":
+            process.env.NEXT_PUBLIC_SITE_URL ||
+            "https://mahmoud-elzayat-capstone-ai-enhanced-portfolio-50t88b47j.vercel.app",
+          "X-Title": "Mahmoud Elzayat Portfolio"
         },
+
         body: JSON.stringify({
-          model: model,
-          max_tokens: 700,
+          model,
+          temperature: 0,
           messages: [
             {
               role: "user",
@@ -76,11 +75,10 @@ export async function POST(request) {
       }
     );
 
-    // Handle Anthropic API errors
     if (!response.ok) {
       const detail = await response.text();
 
-      console.error("Anthropic API error:", {
+      console.error("OpenRouter API error:", {
         status: response.status,
         model,
         detail
@@ -89,45 +87,42 @@ export async function POST(request) {
       let userMessage =
         "The AI service is temporarily unavailable. Please try again shortly.";
 
-      if (response.status === 400) {
+      if (response.status === 401) {
         userMessage =
-          "The AI request was invalid. Please try again.";
-      } else if (response.status === 401) {
+          "The OpenRouter API key is invalid or unauthorized.";
+      } else if (response.status === 402) {
         userMessage =
-          "The Anthropic API key is invalid or unauthorized.";
+          "The selected AI model is not currently available on the free tier.";
       } else if (response.status === 403) {
         userMessage =
-          "The Anthropic API request is not authorized.";
+          "The AI request is not authorized.";
       } else if (response.status === 404) {
         userMessage =
-          "The selected Claude model was not found.";
+          "The selected AI model was not found.";
       } else if (response.status === 429) {
         userMessage =
-          "The AI service limit was reached. Please try again later.";
+          "The free AI request limit was reached. Please try again later.";
       } else if (response.status >= 500) {
         userMessage =
-          "Anthropic is temporarily unavailable. Please try again later.";
+          "The AI provider is temporarily unavailable.";
       }
 
       return NextResponse.json(
-        {
-          error: userMessage
-        },
-        {
-          status: response.status === 400 ? 400 : 502
-        }
+        { error: userMessage },
+        { status: 502 }
       );
     }
 
-    // Parse Anthropic response
     const payload = await response.json();
 
-    const text = payload?.content?.find(
-      (item) => item.type === "text"
-    )?.text;
+    const text =
+      payload?.choices?.[0]?.message?.content;
 
     if (!text) {
-      console.error("Anthropic returned no usable text:", payload);
+      console.error(
+        "OpenRouter returned no usable content:",
+        payload
+      );
 
       return NextResponse.json(
         {
@@ -138,13 +133,12 @@ export async function POST(request) {
       );
     }
 
-    // Parse JSON returned by Claude
     let parsed;
 
     try {
       parsed = JSON.parse(text);
     } catch (error) {
-      console.error("Invalid JSON returned by Anthropic:", {
+      console.error("Invalid JSON from OpenRouter:", {
         error,
         text
       });
@@ -158,7 +152,6 @@ export async function POST(request) {
       );
     }
 
-    // Validate expected structure
     if (!validateAdvisorResult(parsed)) {
       console.error(
         "Invalid advisor result structure:",
@@ -174,7 +167,6 @@ export async function POST(request) {
       );
     }
 
-    // Return successful result
     return NextResponse.json(parsed);
 
   } catch (error) {
