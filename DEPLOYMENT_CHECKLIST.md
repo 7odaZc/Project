@@ -6,8 +6,9 @@
 - [ ] Confirm current production build is the exact commit being submitted.
 - [ ] Configure `ANTHROPIC_API_KEY` as a server-side Vercel environment variable.
 - [ ] Configure `ANTHROPIC_MODEL` as a server-side Vercel environment variable.
-- [ ] Verify `/api/advisor` works on production.
-- [ ] Verify no secrets appear in browser source or Git history.
+- [x] Verify public production routes respond successfully.
+- [x] Verify no `.env.local` or API key is present in the submitted repository.
+- [ ] Verify `/api/advisor` works on production after configuring credentials.
 - [ ] Run Lighthouse on production.
 - [ ] Run axe/WAVE on production.
 - [ ] Test mobile at approximately 375px.

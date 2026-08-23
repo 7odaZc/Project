@@ -5,15 +5,14 @@ This portfolio solves a small but real problem for people evaluating my work: a 
 
 ## Live application
 Production URL:
-https://capstone1-teal.vercel.app
+https://mahmoud-elzayat-capstone-ai-enhance.vercel.app
 
 Repository:
-https://github.com/7odaZc/Capstone1
+https://github.com/7odaZc/Project
 
 ## Local setup
 ```bash
-npm install
-npm run dev
+npm install && npm run dev
 ```
 
 Open:
@@ -69,6 +68,8 @@ Run:
 npm test
 ```
 
+Current local evidence: 3 tests passed across 2 test files with Vitest coverage enabled.
+
 The test suite covers:
 - ProjectCard rendering and navigation
 - AdvisorForm validation
@@ -85,7 +86,7 @@ The AI feature uses:
 - semantic navigation
 - readable contrast using the portfolio identity system
 
-Run Lighthouse and axe/WAVE against the deployed URL before final submission and record the actual results in `AUDIT.md`.
+Run Lighthouse and axe/WAVE against the deployed URL before final submission and record the actual results in `AUDIT.md`. The current audit file intentionally contains no invented scores.
 
 ## Known limitations
 - The AI result depends on an external Claude API and configured server-side credentials.
